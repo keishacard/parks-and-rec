@@ -1,4 +1,4 @@
-const baseUrl = "https://raw.githubusercontent.com/nss-day-cohort-31/national-parks/master/database.json?"
+const baseUrl = "https://raw.githubusercontent.com/nss-day-cohort-31/national-parks/master/database.json"
 
 console.log("hello");
 
@@ -9,27 +9,29 @@ console.log("hello");
 //         displayParksResults.innerHTML = ""
 //     }
 
-let allParks = document.createElement("ol")
-parkList.appendChild(parksList)
+// let allParks = document.createElement("ol")
+// parkList.appendChild(parksList)
 
-let visited = document.querySelector("#parkArticle").value
-visited = `${visited}=true`
+// let visited = document.querySelector("#parkArticle").value
+// visited = `${visited}=true`
+let allParksDiv = document.querySelector("#allParks")
+let parksList = document.createElement("ul")
+allParksDiv.appendChild(parksList)
 
-fetch(`${baseUrl}${visited}`)
+fetch(`${baseUrl}`)
     .then(response => response.json())
-    .then(parksArray => parksArray.forEach(parkObject => {
-        // console.log(`${park.park_name} ${park.mapped_location.human_address}`)
-        let parsedName = JSON.parse("name")
-        // console.log(parsedAddress);
-        // let string =
-        let parkResult = document.createElement("li")
-        // let saveBtn = document.createElement("button")
-        // saveBtn.innerHTML = "Save"
-        // saveBtn.setAttribute("id", `${parkObject.park_name}: ${parsedAddress.address}`)
-        // saveBtn.addEventListener("click", saveParkToItin)
-        // parkResult.innerHTML = `<p>${parkObject.park_name}: ${parsedAddress.address}</p>`
-        // parkResult.appendChild(saveBtn)
+    .then(parksResponse => parksResponse.parks.forEach(parkObject => {
+        let parkResult = document.createElement("article")
+        let parkName = document.createElement("h3")
+        let parkState = document.createElement("p")
 
-        parksList.appendChild(parkResult)
+        parkName.innerHTML = `${parkObject.name}`
+        parkState.innerHTML = `${parkObject.state}`
+        // console.log(parkName)
+
+        parkResult.appendChild(parkName)
+        parkResult.appendChild(parkState)
+        console.log(parkResult)
+        allParksDiv.appendChild(parkResult)
     })
     )
