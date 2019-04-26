@@ -1,0 +1,9 @@
+.yesVisited {
+    border: red dashed 2px;
+    margin: 4px;
+}
+
+.notVisited {
+    border: green solid 2px;
+    margin: 4px;
+}
