@@ -28,7 +28,11 @@ fetch(`${baseUrl}`)
         parkName.innerHTML = `${parkObject.name}`
         parkState.innerHTML = `${parkObject.state}`
         // console.log(parkName)
-
+        if (parkObject.visited === true) {
+            parkResult.setAttribute("class", "yesVisited")
+        } else if (parkObject.visited === false) {
+            parkResult.setAttribute("class", "notVisited")
+        }
         parkResult.appendChild(parkName)
         parkResult.appendChild(parkState)
         console.log(parkResult)
